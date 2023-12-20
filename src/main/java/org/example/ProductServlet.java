@@ -15,7 +15,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.UUID;
@@ -43,9 +42,31 @@ public class ProductServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        BufferedReader reader = req.getReader();
-        ProductDto productDto = new Gson().fromJson(reader, ProductDto.class);
-        String json = new Gson().toJson(productService.create(productDto));
+        ProductDto productDto = new Gson().fromJson(req.getReader().toString(), ProductDto.class);
+        String json = new Gson().toJson(productDto);
+        try (PrintWriter out = resp.getWriter()) {
+            out.write(json);
+            resp.setStatus(200);
+        }
+    }
+
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String uuid = req.getParameter("uuid");
+        ProductDto productDto = new Gson().fromJson(req.getReader(), ProductDto.class);
+        productService.update(UUID.fromString(uuid), productDto);
+        String json = new Gson().toJson("Update");
+        try (PrintWriter out = resp.getWriter()) {
+            out.write(json);
+            resp.setStatus(200);
+        }
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String uuid = req.getParameter("uuid");
+        productService.delete(UUID.fromString(uuid));
+        String json = new Gson().toJson("Delete");
         try (PrintWriter out = resp.getWriter()) {
             out.write(json);
             resp.setStatus(200);
