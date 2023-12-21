@@ -24,7 +24,7 @@ public interface ProductService {
      *
      * @return лист с информацией о продуктах
      */
-    List<InfoProductDto> getAll();
+    List<InfoProductDto> getAll(int page, int pageSize);
 
     /**
      * Создаёт новый продукт из DTO
