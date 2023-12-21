@@ -4,6 +4,7 @@ package org.example.servlet;
 import com.google.gson.Gson;
 import org.example.dao.ProductDao;
 import org.example.dao.ProductDaoImpl;
+import org.example.dto.InfoProductDto;
 import org.example.dto.ProductDto;
 import org.example.mapper.ProductMapper;
 import org.example.mapper.ProductMapperImpl;
@@ -16,9 +17,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.awt.print.Pageable;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.UUID;
 
 @WebServlet(value = "/controller")
@@ -32,8 +33,11 @@ public class ProductServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String uuid = req.getParameter("uuid");
         String json;
+        int page = Integer.parseInt(req.getParameter("page"));
+        int pageSize = Integer.parseInt(req.getParameter("pageSize"));
         if ("all".equals(uuid)) {
-            json = new Gson().toJson(productService.getAll());
+            List<InfoProductDto> products = productService.getAll(page, pageSize);
+            json = new Gson().toJson(products);
         } else {
             json = new Gson().toJson(productService.get(UUID.fromString(uuid)));
         }
