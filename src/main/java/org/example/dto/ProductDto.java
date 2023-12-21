@@ -12,26 +12,26 @@ public record ProductDto(
         /*
          * {@link org.example.entity.Product}
          */
-        //@NotNull
+        @NotNull
         UUID uuid,
         /*
          * {@link org.example.entity.Product}
          */
-       // @NotNull(message = "Имя должно быть задано")
+        @NotNull(message = "Имя должно быть задано")
         String name,
         /*
          * {@link org.example.entity.Product}
          */
-//        @NotBlank(message = "Описание не должно быть пустым")
-//        @Pattern(regexp = "^[A-Za-z0-9_-]*$", message = "Некорректный формат данных")
+        @NotBlank(message = "Описание не должно быть пустым")
+        @Pattern(regexp = "^[A-Za-z0-9_-]*$", message = "Некорректный формат данных")
         String description,
         /*
           {@link org.example.entity.Product}
          */
-//        @NotNull
-//        @Positive(message = "Цена должна быть положительной")
+        @NotNull
+        @Positive(message = "Цена должна быть положительной")
         BigDecimal price,
-//        @NotNull(message = "дата  не должна быть пустым")
+        @NotNull(message = "дата  не должна быть пустым")
         LocalDateTime created) {
 
 }
