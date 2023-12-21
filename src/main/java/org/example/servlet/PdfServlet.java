@@ -2,6 +2,7 @@ package org.example.servlet;
 
 import com.google.gson.Gson;
 import org.example.dto.ProductDto;
+import org.example.exception.PDFException;
 import org.example.mapper.ProductMapper;
 import org.example.mapper.ProductMapperImpl;
 import org.example.util.json.JsonHandler;
@@ -31,7 +32,7 @@ public class PdfServlet extends HttpServlet {
                 out.write(json);
                 resp.setStatus(200);
             }
-        } catch (Exception e) {
+        } catch (PDFException e) {
             resp.setStatus(500);
             resp.getWriter().write("Error processing the request: " + e.getMessage());
         }
