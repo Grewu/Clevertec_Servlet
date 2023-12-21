@@ -3,6 +3,7 @@ plugins {
     id 'java'
     id "io.freefair.lombok" version "6.5.1"
     id 'io.freefair.aspectj.post-compile-weaving' version "6.4.1"
+    id 'org.liquibase.gradle' version '2.2.0'
 }
 
 group = 'org.example'

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+        http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+    <changeSet id="4" author="pavel">
+        <sql>
+            INSERT INTO public.product (uuid, name, description, price, created)
+            VALUES
+            ('2a8d7d22-057a-4f50-9d84-6ae7bbec852b', 'Product3', 'Description3', 20.49, '2023-12-20 12:30:00.000'),
+            ('e19a9d1d-3ff8-4d32-9a63-2e1c87285ec9', 'Product4', 'Description4', 8.99, '2023-12-20 12:45:00.000'),
+            ('b9b26e3c-10f1-42e4-97bf-7d2fe1790f4a', 'Product5', 'Description5', 12.75, '2023-12-20 13:00:00.000'),
+            ('9c4e66c2-0c44-4bf4-b28c-85e0835c67b2', 'Product6', 'Description6', 18.25, '2023-12-20 13:15:00.000'),
+            ('87b7a68d-b6f5-46a8-a53b-417cd3e12e7c', 'Product7', 'Description7', 23.99, '2023-12-20 13:30:00.000'),
+            ('fd18bf53-cfb2-42e8-b35e-15d21ce2b7c6', 'Product8', 'Description8', 9.50, '2023-12-20 13:45:00.000'),
+            ('a9b421a8-99fc-4c60-94cf-c7d06d7a6dfb', 'Product9', 'Description9', 14.50, '2023-12-20 14:00:00.000'),
+            ('c5e41ebf-3284-4289-80cc-25cb4b240a6d', 'Product10', 'Description10', 11.25, '2023-12-20 14:15:00.000'),
+            ('649c6aed-6d8d-4cad-80f6-1b60174e036b', 'Product1', 'Description1', 10.50, '2023-12-20 13:46:00.000'),
+            ('06c05096-2f5a-424f-b472-446b32281318', 'Product110', 'Description110', 10.50, '2023-12-20 13:47:00.000');
+        </sql>
+    </changeSet>
+</databaseChangeLog>
