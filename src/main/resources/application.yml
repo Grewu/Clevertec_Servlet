@@ -4,3 +4,7 @@ db:
   db.password: postgres
 cache: LRU
 capacity: 25
+liquibase:
+  changeLog:
+    file: /liquibase/db.changelog.xml
+    schema: public
