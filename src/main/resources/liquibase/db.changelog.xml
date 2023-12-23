@@ -9,7 +9,6 @@
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
         http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
     <include file="/liquibase/sequences.xml"/>
-    <include file="/liquibase/discount_card_table.xml"/>
     <include file="/liquibase/product_table.xml"/>
-    <include file="/liquibase/insert.xml"/>
+    <include file="/liquibase/insert_data.xml"/>
 </databaseChangeLog>
