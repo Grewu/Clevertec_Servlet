@@ -10,9 +10,6 @@ import org.example.exception.ProductNotFoundException;
 import org.example.exception.ProductUpdateException;
 import org.example.mapper.ProductMapper;
 import org.example.pattern.singleton.ConnectionManagerSingleton;
-import org.example.proxy.annotation.CreateProduct;
-import org.example.proxy.annotation.DeleteProduct;
-import org.example.proxy.annotation.GetProduct;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -80,7 +77,6 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    @CreateProduct
     public UUID create(ProductDto productDto) {
         try (Connection connection = connectionManager.open();
              PreparedStatement statement = connection.prepareStatement(INSERT_SQL)) {
@@ -110,7 +106,6 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    @DeleteProduct
     public void delete(UUID uuid) {
         try (Connection connection = connectionManager.open();
              PreparedStatement statement = connection.prepareStatement(DELETE_SQL)) {
@@ -122,7 +117,6 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    @GetProduct
     public Optional<Product> findById(UUID uuid) {
         try (Connection connection = connectionManager.open();
              PreparedStatement statement = connection.prepareStatement(SELECT_BY_UUID_SQL)) {

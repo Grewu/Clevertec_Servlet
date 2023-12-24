@@ -28,11 +28,16 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<InfoProductDto> getAll() {
-        List<Product> productDtos = productDao.findAll();
-        return productDtos.stream()
+    public List<InfoProductDto> getAll(int page, int pageSize) {
+        List<Product> allProducts = productDao.findAll();
+        int offset = page * pageSize;
+        List<Product> productsOnPage = allProducts.stream()
+                .skip(offset)
+                .limit(pageSize)
+                .toList();
+        return productsOnPage.stream()
                 .map(mapper::toInfoProductDto)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
