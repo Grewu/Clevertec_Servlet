@@ -76,7 +76,7 @@ public class PDFWriter extends ReportProductTemplate {
 
 
     @Override
-    protected void initialize(Product product) {
+    public void initialize(Product product) {
         createPdfWithBackground(product);
     }
 

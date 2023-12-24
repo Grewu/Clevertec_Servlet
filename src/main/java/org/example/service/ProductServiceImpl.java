@@ -11,7 +11,6 @@ import org.example.mapper.ProductMapper;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
