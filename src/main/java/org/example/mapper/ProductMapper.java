@@ -5,8 +5,10 @@ import org.example.dto.ProductDto;
 import org.example.entity.Product;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
+import org.springframework.stereotype.Component;
 
 @Mapper
+@Component
 public interface ProductMapper {
     /**
      * Маппит DTO в продукт без UUID
