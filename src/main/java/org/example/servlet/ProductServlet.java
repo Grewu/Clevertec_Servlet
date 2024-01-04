@@ -8,6 +8,8 @@ import org.example.service.ProductService;
 import org.example.util.json.JsonHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,8 +21,8 @@ import java.io.PrintWriter;
 import java.util.List;
 import java.util.UUID;
 
-@WebServlet(value = "/controller")
 @Controller
+@RequestMapping("/controller")
 public class ProductServlet extends HttpServlet {
 
     private final ProductService productService;
@@ -31,6 +33,7 @@ public class ProductServlet extends HttpServlet {
     }
 
     @Override
+    @GetMapping("/uuid")
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String uuid = req.getParameter("uuid");
         String json;
