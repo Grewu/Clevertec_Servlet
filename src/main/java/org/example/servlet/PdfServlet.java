@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 @RequestMapping("/pdf")
-@Controller
+@Component
 public class PdfServlet extends HttpServlet {
 
     private final ProductMapper productMapper;
