@@ -1,6 +1,5 @@
 package org.example.dao;
 
-import lombok.AllArgsConstructor;
 import org.example.db.ConnectionManager;
 import org.example.dto.ProductDto;
 import org.example.entity.Product;
@@ -9,7 +8,8 @@ import org.example.exception.ProductDeleteException;
 import org.example.exception.ProductNotFoundException;
 import org.example.exception.ProductUpdateException;
 import org.example.mapper.ProductMapper;
-import org.example.pattern.singleton.ConnectionManagerSingleton;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -24,10 +24,17 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@AllArgsConstructor
+@Repository
 public class ProductDaoImpl implements ProductDao {
-    private static final ConnectionManager connectionManager = ConnectionManagerSingleton.getInstance();
+    private final ConnectionManager connectionManager;
     private final ProductMapper productMapper;
+
+    @Autowired
+    public ProductDaoImpl(ConnectionManager connectionManager, ProductMapper productMapper) {
+        this.connectionManager = connectionManager;
+        this.productMapper = productMapper;
+    }
+
     private static final String SELECT_BY_UUID_SQL = "SELECT * FROM product WHERE uuid = ?";
     private static final String SELECT_ALL_SQL = "SELECT * FROM product";
     private static final String INSERT_SQL = "INSERT INTO product (uuid, name, description, price, created) VALUES (?, ?, ?, ?, ?)";

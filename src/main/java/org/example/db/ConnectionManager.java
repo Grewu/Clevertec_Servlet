@@ -5,23 +5,21 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public final class ConnectionManager {
-    private static final String URL_KEY = "db.url";
-    private static final String USERNAME_KEY = "db.username";
-    private static final String PASSWORD_KEY = "db.password";
-
-    static {
+    private final String url;
+    private final String username;
+    private final String password;
+    public ConnectionManager(String url, String username, String password) {
+        this.url = url;
+        this.username = username;
+        this.password = password;
         loadDriver();
     }
 
     public Connection open() {
         try {
-            return DriverManager.getConnection(
-                    PropertiesUtil.get(URL_KEY),
-                    PropertiesUtil.get(USERNAME_KEY),
-                    PropertiesUtil.get(PASSWORD_KEY)
-            );
+            return DriverManager.getConnection(url, username, password);
         } catch (SQLException e) {
-            throw new RuntimeException("Error open" + e.getMessage());
+            throw new RuntimeException("Error opening connection: " + e.getMessage(), e);
         }
     }
 
@@ -29,7 +27,7 @@ public final class ConnectionManager {
         try {
             Class.forName("org.postgresql.Driver");
         } catch (ClassNotFoundException e) {
-            throw new RuntimeException("Error load" + e.getMessage());
+            throw new RuntimeException("Error loading driver: " + e.getMessage(), e);
         }
     }
 
