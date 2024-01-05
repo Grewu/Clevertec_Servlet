@@ -1,23 +1,30 @@
 package org.example.service;
 
-import lombok.RequiredArgsConstructor;
 import org.example.dao.ProductDao;
 import org.example.dto.InfoProductDto;
 import org.example.dto.ProductDto;
 import org.example.entity.Product;
 import org.example.exception.ProductNotFoundException;
 import org.example.mapper.ProductMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@RequiredArgsConstructor
+
+@Service
 public class ProductServiceImpl implements ProductService {
 
     private final ProductMapper mapper;
     private final ProductDao productDao;
 
+    @Autowired
+    public ProductServiceImpl(ProductMapper mapper, ProductDao productDao) {
+        this.mapper = mapper;
+        this.productDao = productDao;
+    }
 
     @Override
     public InfoProductDto get(UUID uuid) {

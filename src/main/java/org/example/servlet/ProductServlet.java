@@ -2,15 +2,15 @@ package org.example.servlet;
 
 
 import com.google.gson.Gson;
-import org.example.dao.ProductDao;
-import org.example.dao.ProductDaoImpl;
 import org.example.dto.InfoProductDto;
 import org.example.dto.ProductDto;
-import org.example.mapper.ProductMapper;
-import org.example.mapper.ProductMapperImpl;
 import org.example.service.ProductService;
-import org.example.service.ProductServiceImpl;
 import org.example.util.json.JsonHandler;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,14 +22,19 @@ import java.io.PrintWriter;
 import java.util.List;
 import java.util.UUID;
 
-@WebServlet(value = "/controller")
+@Component
+@RequestMapping("/controller")
 public class ProductServlet extends HttpServlet {
-    private final ProductMapper productMapper = new ProductMapperImpl();
-    private final ProductDao productDao = new ProductDaoImpl(productMapper);
-    private final ProductService productService = new ProductServiceImpl(productMapper, productDao);
 
+    private final ProductService productService;
+
+    @Autowired
+    public ProductServlet(ProductService productService) {
+        this.productService = productService;
+    }
 
     @Override
+    @GetMapping("/uuid")
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String uuid = req.getParameter("uuid");
         String json;
